@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Travel Planning Questionnaire</title>
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      margin: 0;
+      padding: 20px;
+    }
+
+    .container {
+      max-width: 600px;
+      margin: auto;
+      background: white;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    h1 {
+      text-align: center;
+    }
+
+    label {
+      margin-top: 10px;
+      display: block;
+    }
+
+    input,
+    select,
+    textarea {
+      width: 100%;
+      padding: 8px;
+      margin-top: 5px;
+      margin-bottom: 15px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+
+    input[type="radio"],
+    input[type="checkbox"] {
+      width: auto;
+      margin-right: 10px;
+    }
+
+    textarea {
+      resize: none;
+    }
+
+    .radio-group,
+    .checkbox-group {
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 15px;
+    }
+
+    button {
+      background-color: #007bff;
+      color: white;
+      border: none;
+      padding: 10px;
+      border-radius: 5px;
+      cursor: pointer;
+      width: 100%;
+      font-size: 16px;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+
+    .highlighted-label {
+  font-weight: bold;
+  font-size: 16px;
+  margin-top: 15px;
+  margin-bottom: 10px;
+  display: block;
+}
+
+.destination-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+.checkbox-button {
+  cursor: pointer;
+  user-select: none;
+}
+
+.checkbox-button span {
+  display: inline-block;
+  padding: 8px 16px;
+  border: 1px solid #ccc;
+  background-color: #eee;
+  border-radius: 5px;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.checkbox-button input:checked + span {
+  background-color: #007bff;
+  color: white;
+  border-color: #007bff;
+}
+
+
+
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <h1>Travel Planning Questionnaire</h1>
+    <form id="travelForm">
+      <label for="name">Name:</label>
+      <input type="text" id="name" name="name" required>
+
+      <label for="email">Email:</label>
+      <input type="email" id="email" name="email" required>
+
+      <label for="phone">Phone Number:</label>
+      <input type="tel" id="phone" name="phone" placeholder="(000) 000-0000" required>
+
+      <label for="date">Today's date:</label>
+      <input type="date" id="date" name="date" required>
+
+      <label for="travelType">Type of travel for this trip:</label>
+      <select id="travelType" name="travelType" required>
+        <option value="" disabled selected>-- Select one --</option>
+        <option value="weekend_break">The weekend break</option>
+        <option value="package_holiday">The package holiday</option>
+        <option value="group_tour">The group tour</option>
+        <option value="business_travel">Business travel</option>
+        <option value="friends_relation_visit">Friends & family visit</option>
+        <option value="other">Other</option>
+      </select>
+
+
+      <label class="highlighted-label">Where would you like to travel?</label>
+      <div class="destination-buttons" id="destinationButtons">
+        <label class="checkbox-button">
+          <input type="checkbox" name="destination" value="communal" hidden>
+          <span>✅Impasug-ong</span>
+        </label>
+        <label class="checkbox-button">
+          <input type="checkbox" name="destination" value="cloudscape" hidden>
+          <span>✅Monolo Fortich </span>
+        </label>
+        <label class="checkbox-button">
+          <input type="checkbox" name="destination" value="roty" hidden>
+          <span>✅Malaybalay </span>
+        </label>
+      </div>
+      
+
+
+      <label>Who will be traveling?</label>
+      <div class="radio-group">
+        <label><input type="radio" name="traveler" value="myself" required> By myself</label>
+        <label><input type="radio" name="traveler" value="couple" required> Couple</label>
+        <label><input type="radio" name="traveler" value="group" required> Group</label>
+      </div>
+
+      <label for="details">Include any specific details:</label>
+      <textarea id="details" name="details" rows="4" placeholder="Additional preferences..."></textarea>
+
+      <label for="departure">What is your city of departure?</label>
+      <input type="text" id="departure" name="departure" required>
+
+      <label for="departDate">Preferred departure date:</label>
+      <input type="date" id="departDate" name="departDate" required>
+
+      <label for="returnDate">Preferred return date:</label>
+      <input type="date" id="returnDate" name="returnDate" required>
+
+      <button type="submit">Submit</button>
+    </form>
+  </div>
+
+  <script>
+    const travelForm = document.getElementById("travelForm");
+    travelForm.addEventListener("submit", function (e) {
+      e.preventDefault();
+      alert("Your travel preferences have been submitted. Thank you!");
+      travelForm.reset();
+    });
+  </script>
+</body>
+
+</html>

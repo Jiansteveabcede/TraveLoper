@@ -1,0 +1,77 @@
+/* =====================
+    General Reset
+===================== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+body {
+  font-family: 'Arial', sans-serif;
+  line-height: 1.6;
+  background-color: #333;
+  color: #fff;
+  scroll-behavior: smooth;
+}
+
+/* =====================
+    Navigation
+===================== */
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #333;
+  padding: 1rem 5%;
+}
+
+.logo a {
+  color: #fff;
+  text-decoration: none;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 30px;
+}
+
+.nav-links a {
+  color: #fff;
+  text-decoration: none;
+  padding: 10px 15px;
+  transition: color 0.3s, transform 0.2s;
+}
+
+.nav-links a:hover {
+  color: #f39c12;
+  transform: translateY(-2px);
+}
+
+/* Responsive Nav */
+@media (max-width: 768px) {
+  nav {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .nav-links {
+    flex-direction: column;
+    gap: 15px;
+    margin-top: 10px;
+  }
+}
+
+/* =====================
+    Responsive Tweaks
+===================== */
+@media (max-width: 768px) {
+  .about-content,
+  .contact-content {
+    flex-direction: column;
+  }
+}

@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About Us</title>
+  <link rel="stylesheet" href="prac.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+
+<style>
+  /* General Reset */
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  /* About Us Section */
+  .about {
+    padding: 4rem 2rem;
+    background: white;
+    color: #333;
+  }
+
+  .about h2 {
+    text-align: center;
+    margin-bottom: 2rem;
+    font-size: 2.5rem;
+  }
+
+  .about-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    max-width: 900px;
+    margin: auto;
+    gap: 2rem;
+  }
+
+  /* Left Side: Text */
+  .about-text {
+    flex: 1;
+    text-align: left;
+  }
+
+  .about-text h3 {
+    font-size: 2rem;
+    color: #333;
+    margin-bottom: 1rem;
+  }
+
+  .about-text p {
+    font-size: 1.2rem;
+    color: #555;
+    line-height: 1.6;
+  }
+
+  /* Right Side: Image Slider */
+  .about-slider {
+    flex: 1;
+    max-width: 400px;
+    height: 300px;
+    overflow: hidden;
+    border-radius: 15px;
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
+    position: relative;
+  }
+
+  /* Image Container */
+  .image-container {
+    display: flex;
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+  }
+
+  .image-slide {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .image-slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+  }
+
+  .image-slide.active {
+    opacity: 1;
+  }
+
+  /* Navigation Buttons */
+  .prev-btn, .next-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    font-size: 1.5rem;
+    border-radius: 50%;
+    transition: background-color 0.3s;
+    z-index: 10;
+  }
+
+  .prev-btn { left: 10px; }
+  .next-btn { right: 10px; }
+
+  .prev-btn:hover, .next-btn:hover {
+    background: rgba(0, 0, 0, 0.8);
+  }
+
+  /* Info Panel */
+  .info-panel {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 1.5rem;
+    max-width: 400px;
+    height: 100%;
+    padding: 1rem;
+    border-radius: 15px;
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.05);
+  }
+
+  .icons {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+  }
+
+  .icons img {
+    width: 50px;
+    height: 50px;
+    padding: 0.5rem;
+    border-radius: 50%;
+    background-color: #f3f3f3;
+    transition: transform 0.3s ease;
+  }
+
+  .icons img:hover {
+    transform: scale(1.1);
+  }
+
+  .map-box {
+    width: 100%;
+    padding: 0.5rem;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.05);
+  }
+
+  .map-box img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+  }
+
+  .price-duration {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid #ddd;
+    padding-top: 1rem;
+    font-size: 1.2rem;
+    color: #333;
+  }
+
+  .price-duration .price {
+    font-weight: bold;
+    color: #2e8b57;
+    font-size: 1.5rem;
+  }
+
+  .price-duration .duration {
+    background-color: #e6e0ec;
+    padding: 0.4rem 1rem;
+    border-radius: 20px;
+    font-size: 1rem;
+  }
+
+  .price-duration .duration span {
+    font-weight: bold;
+    font-size: 1.2rem;
+  }
+
+  .book-now-btn {
+    background-color: #2e8b57;
+    color: white;
+    border: none;
+    padding: 0.8rem 1.5rem;
+    font-size: 1.1rem;
+    font-weight: bold;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    width: 100%;
+    text-align: center;
+    margin-top: 1rem;
+  }
+
+  .book-now-btn:hover {
+    background-color: #236d47;
+  }
+</style>
+
+<body>
+  <!-- Navigation Bar -->
+  <nav>
+    <div class="logo">
+      <a href="#">Tour & Travel</a>
+    </div>
+    <ul class="nav-links">
+      <li><a href="../tour/Home.html">Home</a></li>
+      <li><a href="../tour/Destinations.html">Destinations</a></li>
+      <li><a href="../tour/About Us.html">About Us</a></li>
+      <li><a href="../tour/Tour Guides.html">Tour Guides</a></li>
+      <li><a href="../tour/Contact.html">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- About Us Section -->
+  <section id="about" class="about">
+    <h2>About Us</h2>
+    <div class="about-container">
+      <div class="about-slider">
+        <div class="image-container">
+          <div class="image-slide active">
+            <img src="../practice/communal1.jpg" alt="About Image 1">
+          </div>
+          <div class="image-slide">
+            <img src="../practice/roty1.jpg" alt="About Image 2">
+          </div>
+          <div class="image-slide">
+            <img src="../practice/cloudscape1.jpg" alt="About Image 3">
+          </div>
+          <div class="image-slide">
+            <img src="../practice/monastery1.jpg" alt="About Image 4">
+          </div>
+          <div class="image-slide">
+            <img src="../practice/dahilayan1.jpg" alt="About Image 5">
+          </div>
+        </div>
+        <button class="prev-btn" onclick="prevImage()">&#10094;</button>
+        <button class="next-btn" onclick="nextImage()">&#10095;</button>
+      </div>
+
+      <div class="info-panel">
+        <p id="slide-description" style="font-size: 1rem; color: #444; text-align: justify;">
+          We are a leading travel agency dedicated to providing you with the best travel experiences. Our team of experts is here to help you plan your dream vacation.
+        </p>
+
+        <div class="map-box">
+          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d6972.462648191579!2d124.8533773888965!3d8.202209267318871!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x32ff9f60c85c2e0f%3A0x71718b0e3e40309c!2sDahilayan%20Adventure%20Park!5e1!3m2!1sen!2sph!4v1744980250354!5m2!1sen!2sph" width="100%" height="200" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+        </div>
+
+        <div class="price-duration">
+          <div class="price">$5780</div>
+          <div class="duration"><span>14</span> days</div>
+          <button class="book-now-btn">Book Now</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    let currentIndex = 0;
+    const slides = document.querySelectorAll('.image-slide');
+    const descriptionText = document.getElementById('slide-description');
+    const mapBox = document.querySelector('.map-box iframe');
+
+    const descriptions = [
+      "We are a leading travel agency dedicated to providing you with the best travel experiences. Our team of experts is here to help you plan your dream vacation.",
+      "Explore the beauty of nature and immerse yourself in unique cultural experiences with us.",
+      "Capture unforgettable moments and discover hidden gems around the world.",
+      "The Monastery of Transfiguration in Malaybalay, Bukidnon is a peaceful retreat run by Benedictine monks. Famous for its unique pyramid-shaped church and tranquil atmosphere, it's a sacred place for reflection surrounded by rolling hills and lush greenery.",
+      "Dahilayan is a cool-climate adventure haven nestled at the foot of Mt. Kitanglad in Bukidnon. Known for its scenic pine forests, thrilling zip lines, and outdoor activities, it's the perfect spot for adrenaline junkies and nature lovers alike."
+    ];
+
+    const mapUrls = [
+      "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d938.1588874549051!2d125.0287656!3d8.3049625!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x32ffbb5fa5aa65e1%3A0x813043008b3ec503!2sCommunal%20Ranch!5e1!3m2!1sen!2sph!4v1744966178971!5m2!1sen!2sph",
+      "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d938.0638670379942!2d125.03838527165449!3d8.344623449814959!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x32ffb15b3ab4fd13%3A0x91365c3870279340!2sRotyPeaks%20Ridge%20Camp!5e1!3m2!1sen!2sph!4v1744966159083!5m2!1sen!2sph",
+      "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3753.1223542574558!2d125.1753233!3d8.25388880000001!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x32ffadbeae5853f5%3A0xf37f52cf66bdc1a4!2sCloudscape%20Nature%20Park!5e1!3m2!1sen!2sph!4v1744966121763!5m2!1sen!2sph",
+      "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d6974.062734028169!2d125.1274082888919!3d8.110479717674469!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x32ff00b03d30c771%3A0x2eeb0ee7172f2dec!2sNew%20Monastery%20of%20Transfiguration!5e1!3m2!1sen!2sph!4v1744980179946!5m2!1sen!2sph",
+      "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d6972.462648191579!2d124.8533773888965!3d8.202209267318871!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x32ff9f60c85c2e0f%3A0x71718b0e3e40309c!2sDahilayan%20Adventure%20Park!5e1!3m2!1sen!2sph!4v1744980250354!5m2!1sen!2sph"
+     ];
+
+     function nextImage() {
+  currentIndex = (currentIndex + 1) % slides.length;
+  updateSlider();
+}
+
+function prevImage() {
+  currentIndex = (currentIndex - 1 + slides.length) % slides.length;
+  updateSlider();
+}
+
+function updateSlider() {
+  slides.forEach((slide, index) => {
+    slide.classList.remove("active");
+    if (index === currentIndex) {
+      slide.classList.add("active");
+      descriptionText.textContent = descriptions[index];
+      mapBox.src = mapUrls[index];
+    }
+  });
+}
+
+setInterval(nextImage, 20000); // Auto slide every 20 seconds
+   </script> 
+  </body> 
+</html>

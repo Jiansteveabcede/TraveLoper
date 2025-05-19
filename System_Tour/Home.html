@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tour Travel</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+
+<style>
+  /* General Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Hero Section */
+.hero {
+    height: 100vh;
+    background: url('../tour/image/bukid.jpg') no-repeat center center/cover; /* Bukidnon-like mountains */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 0 2rem; /* Add padding for small screens */
+    position: relative;
+    color: #fff;
+    animation: fadeIn 2s ease-in-out;
+}
+
+.hero::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.5); /* Overlay for better text contrast */
+}
+
+.hero-content {
+    position: relative;
+    z-index: 1;
+    max-width: 700px; /* Limit text width */
+    padding: 0 1rem; /* Add small padding for responsiveness */
+}
+
+.hero h1 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+    text-shadow: 2px 2px 10px rgba(255, 255, 255, 0.8); /* White text shadow for readability */
+}
+
+.hero p {
+    font-size: 1.5rem;
+    margin-bottom: 2rem;
+    text-shadow: 2px 2px 8px rgba(255, 255, 255, 0.8); /* White text shadow for readability */
+}
+
+/* Buttons */
+.btn {
+    padding: 0.75rem 2rem;
+    background-color: #f39c12;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+.btn:hover {
+    background-color: #e67e22;
+    transform: translateY(-3px);
+}
+
+/* Sections */
+section {
+    padding: 4rem 2rem;
+    text-align: center;
+}
+
+
+</style>
+
+
+<body>
+     <!-- Navigation Bar -->
+  <nav>
+    <div class="logo">
+      <a href="#">Tour & Travel</a>
+    </div>
+    <ul class="nav-links">
+        <li><a href="../tour/Home.html">Home</a></li>
+        <li><a href="../tour/Destinations.html">Destinations</a></li>
+        <li><a href="../tour/Explore.html">Explore</a></li>
+        <li><a href="../tour/Tour Guides.html">Tour Guides</a></li>
+        <li><a href="../tour/Contact.html">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- Hero Section -->
+  <section id="home" class="hero">
+    <div class="hero-content">
+      <h1>Explore, Experience, Enjoy Bukidnon!</h1>
+      <p>Discover amazing destinations and create unforgettable memories.</p>
+      <p>Bukidnon Update's</p>
+      <a href="../tour/Destinations.html" class="btn">Explore Destinations</a>
+    </div>
+  </section>
+</body>

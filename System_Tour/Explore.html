@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Explore</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+
+<style>
+  /* General Reset */
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  /* About Us Section */
+  .about {
+    padding: 4rem 2rem;
+    background: white;
+    color: #333;
+  }
+
+  .about h2 {
+    text-align: center;
+    margin-bottom: 2rem;
+    font-size: 2.5rem;
+  }
+
+  .about-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    max-width: 900px;
+    margin: auto;
+    gap: 2rem;
+  }
+
+  /* Left Side: Text */
+  .about-text {
+    flex: 1;
+    text-align: left;
+  }
+
+  .about-text h3 {
+    font-size: 2rem;
+    color: #333;
+    margin-bottom: 1rem;
+  }
+
+  .about-text p {
+    font-size: 1.2rem;
+    color: #555;
+    line-height: 1.6;
+  }
+
+  /* Right Side: Image Slider */
+  .about-slider {
+    flex: 1;
+    max-width: 600px;
+    height: 400px;
+    overflow: hidden;
+    border-radius: 15px;
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
+    position: relative;
+  }
+
+  /* Image Container */
+  .image-container {
+    display: flex;
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+  }
+
+  .image-slide {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .image-slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+  }
+
+  .image-slide.active {
+    opacity: 1;
+  }
+
+  /* Navigation Buttons */
+  .prev-btn, .next-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    font-size: 1.5rem;
+    border-radius: 50%;
+    transition: background-color 0.3s;
+    z-index: 10;
+  }
+
+  .prev-btn { left: 10px; }
+  .next-btn { right: 10px; }
+
+  .prev-btn:hover, .next-btn:hover {
+    background: rgba(0, 0, 0, 0.8);
+  }
+
+  /* Info Panel */
+  .info-panel {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 1.5rem;
+    max-width: 400px;
+    height: 100%;
+    padding: 1rem;
+    border-radius: 15px;
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.05);
+  }
+
+  .icons {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+  }
+
+  .icons img {
+    width: 50px;
+    height: 50px;
+    padding: 0.5rem;
+    border-radius: 50%;
+    background-color: #f3f3f3;
+    transition: transform 0.3s ease;
+  }
+
+  .icons img:hover {
+    transform: scale(1.1);
+  }
+
+  .map-box {
+    width: 100%;
+    padding: 0.5rem;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.05);
+  }
+
+  .map-box img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+  }
+
+  .price-duration {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid #ddd;
+    padding-top: 1rem;
+    font-size: 1.2rem;
+    color: #333;
+  }
+
+  .price-duration .price {
+    font-weight: bold;
+    color: #2e8b57;
+    font-size: 1.5rem;
+  }
+
+  .price-duration .duration {
+    background-color: #e6e0ec;
+    padding: 0.4rem 1rem;
+    border-radius: 20px;
+    font-size: 1rem;
+  }
+
+  .price-duration .duration span {
+    font-weight: bold;
+    font-size: 1.2rem;
+  }
+
+  .book-now-btn {
+    background-color: #000000;
+    color: white;
+    border: none;
+    padding: 0.8rem 1.5rem;
+    font-size: 1rem;
+    font-weight: bold;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    width: 50%;
+    text-align: center;
+    margin-top: 1rem;
+  }
+
+  .book-now-btn:hover {
+    background-color: #236d47;
+  }
+</style>
+
+<body>
+  <!-- Navigation Bar -->
+  <nav>
+    <div class="logo">
+      <a href="#">Tour & Travel</a>
+    </div>
+    <ul class="nav-links">
+      <li><a href="../tour/Home.html">Home</a></li>
+      <li><a href="../tour/Destinations.html">Destinations</a></li>
+      <li><a href="../tour/Explore.html">Explore</a></li>
+      <li><a href="../tour/Tour Guides.html">Tour Guides</a></li>
+      <li><a href="../tour/Contact.html">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- About Us Section -->
+  <section id="about" class="about">
+    <h2>Explore the Heart of Bukidnon</h2>
+    <div class="about-container">
+      <div class="about-slider">
+        <div class="image-container">
+          <div class="image-slide active">
+            <img src="../tour/image/communal.jpg" alt="About Image 1">
+          </div>
+          <div class="image-slide">
+            <img src="../tour/image/loverslane.jpg" alt="About Image 2">
+          </div>
+          <div class="image-slide">
+            <img src="../tour/image/panika.jpg" alt="About Image 3">
+          </div>
+          <div class="image-slide">
+            <img src="../tour/image/roty.jpg" alt="About Image 4">
+          </div>
+
+          <div class="image-slide">
+            <img src="../tour/image/alpine.jpg" alt="About Image 5">
+          </div>
+          <div class="image-slide">
+            <img src="../tour/image/forest park.jpg" alt="About Image 6">
+          </div>
+          <div class="image-slide">
+            <img src="../tour/image/adventure.jpg" alt="About Image 7">
+          </div>
+          <div class="image-slide">
+            <img src="../tour/image/plantation.jpg" alt="About Image 8">
+          </div>
+          <div class="image-slide">
+            <img src="../tour/image/pineapple.jpg" alt="About Image 9">
+          </div>
+
+          <div class="image-slide">
+            <img src="../tour/image/cloudscape.jpg" alt="About Image 10">
+          </div>
+          <div class="image-slide">
+            <img src="../tour/image/falls.jpg" alt="About Image 11">
+          </div>
+          <div class="image-slide">
+            <img src="../tour/image/katihan.jpg" alt="About Image 12">
+          </div>
+          <div class="image-slide">
+            <img src="../tour/image/pineridge.jpg" alt="About Image 13">
+          </div>
+          <div class="image-slide">
+            <img src="../tour/image/monastery.jpg" alt="About Image 14">
+          </div>
+        </div>
+        <button class="prev-btn" onclick="prevImage()">&#10094;</button>
+        <button class="next-btn" onclick="nextImage()">&#10095;</button>
+      </div>
+
+      <div class="info-panel">
+        <p id="slide-description" style="font-size: 1rem; color: #444; text-align: justify;">
+          ✅Impasug-ong 1 day:<br>
+          📌Communal Ranch<br>
+          📍Lover’s Lane<br>
+          📍Panika<br>
+          📍Rotypeaks (optional & habal transpo)<br>
+        </p>
+        
+
+        <div class="map-box">
+          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d938.1588874549051!2d125.0287656!3d8.3049625!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x32ffbb5fa5aa65e1%3A0x813043008b3ec503!2sCommunal%20Ranch!5e1!3m2!1sen!2sph!4v1744966178971!5m2!1sen!2sph" width="100%" height="200" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+        </div>
+
+        <div class="price-duration">
+          <div class="price" id="price">$24</div>
+          <div class="duration" id="duration"><span>1</span> day</div>
+          <a href="../tour/Booking.html" class="book-now-btn" id="booking-link">Book Now</a>
+        </div>
+               
+    </div>
+  </section>
+
+  <script>
+    let currentIndex = 0;
+    const slides = document.querySelectorAll('.image-slide');
+    const descriptionText = document.getElementById('slide-description');
+    const mapBox = document.querySelector('.map-box iframe');
+    
+
+    const descriptions = [
+      "✅Impasug-ong 1 day:<br>📌Communal Ranch<br>📍Lover’s Lane<br>📍Panika<br>📍Rotypeaks (optional & habal transpo)<br>",
+      "✅Impasug-ong 1 day:<br>📍Communal Ranch<br>📌Lover’s Lane<br>📍Panika<br>📍Rotypeaks (optional & habal transpo)<br>",
+      "✅Impasug-ong 1 day:<br>📍Communal Ranch<br>📍Lover’s Lane<br>📌Panika<br>📍Rotypeaks (optional & habal transpo)<br>",
+      "✅Impasug-ong 1 day:<br>📍Communal Ranch<br>📍Lover’s Lane<br>📍Panika<br>📌Rotypeaks (optional & habal transpo)<br>",
+
+      "✅Monolo Fortich 1 day:<br>📌Dahilayan Alpine Village<br>📍Dahilayan Forest Park<br>📍Dahilayan Adventure Park<br>📍Del Monte Pineapple Plantation<br>📍Pineapple Giant Statue<br>Drop accom: Malaybalay Airbnb",
+      "✅Monolo Fortich 1 day:<br>📍Dahilayan Alpine Village<br>📌Dahilayan Forest Park<br>📍Dahilayan Adventure Park<br>📍Del Monte Pineapple Plantation<br>📍Pineapple Giant Statue<br>Drop accom: Malaybalay Airbnb",
+      "✅Monolo Fortich 1 day:<br>📍Dahilayan Alpine Village<br>📍Dahilayan Forest Park<br>📌Dahilayan Adventure Park<br>📍Del Monte Pineapple Plantation<br>📍Pineapple Giant Statue<br>Drop accom: Malaybalay Airbnb",
+      "✅Monolo Fortich 1 day:<br>📍Dahilayan Alpine Village<br>📍Dahilayan Forest Park<br>📍Dahilayan Adventure Park<br>📌Del Monte Pineapple Plantation<br>📍Pineapple Giant Statue<br>Drop accom: Malaybalay Airbnb",
+      "✅Monolo Fortich 1 day:<br>📍Dahilayan Alpine Village<br>📍Dahilayan Forest Park<br>📍Dahilayan Adventure Park<br>📍Del Monte Pineapple Plantation<br>📌Pineapple Giant Statue<br>Drop accom: Malaybalay Airbnb",
+
+      "✅Malaybalay 1 day:<br>📌Cloudscape Nature Park<br>📍Dumagongdong Falls<br>📍katihan eco park<br>📍Pine Ridge<br>📍Monastery<br> Drop off Airport (3PM) end of tour",
+      "✅Malaybalay 1 day:<br>📍Cloudscape Nature Park<br>📌Dumagongdong Falls<br>📍katihan eco park<br>📍Pine Ridge<br>📍Monastery<br> Drop off Airport (3PM) end of tour",
+      "✅Malaybalay 1 day:<br>📍Cloudscape Nature Park<br>📍Dumagongdong Falls<br>📌katihan eco park<br>📍Pine Ridge<br>📍Monastery<br> Drop off Airport (3PM) end of tour",
+      "✅Malaybalay 1 day:<br>📍Cloudscape Nature Park<br>📍Dumagongdong Falls<br>📍katihan eco park<br>📌Pine Ridge<br>📍Monastery<br> Drop off Airport (3PM) end of tour",
+      "✅Malaybalay 1 day:<br>📍Cloudscape Nature Park<br>📍Dumagongdong Falls<br>📍katihan eco park<br>📍Pine Ridge<br>📌Monastery<br> Drop off Airport (3PM) end of tour"
+];
+
+
+    const mapUrls = [
+      "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d938.1588874549051!2d125.0287656!3d8.3049625!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x32ffbb5fa5aa65e1%3A0x813043008b3ec503!2sCommunal%20Ranch!5e1!3m2!1sen!2sph!4v1744966178971!5m2!1sen!2sph",
+      "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3752.5454143618067!2d125.01203957477193!3d8.31438499172117!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x32ffbb121763ee15%3A0xc9a66bf27bac567!2sLover%E2%80%99s%20Lane%20Impasug-ong!5e1!3m2!1sen!2sph!4v1745119310759!5m2!1sen!2sph",
+      "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d938.1495306930374!2d124.98446579925147!3d8.308876300000007!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x32ffbb004081c3ab%3A0x576b68972421900a!2sGiant%20Kaamulan%20Headdress!5e1!3m2!1sen!2sph!4v1745122843053!5m2!1sen!2sph",
+      "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3752.25514615589!2d125.03441087747058!3d8.344656970269861!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x32ffb15b3ab4fd13%3A0x91365c3870279340!2sRotyPeaks%20Ridge%20Camp!5e1!3m2!1sen!2sph!4v1745122902807!5m2!1sen!2sph",
+
+      "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3753.6231650664427!2d124.85555687477063!3d8.201015991830932!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x32ff9f6f4241e62d%3A0x68514bf8d72e38c!2sDahilayan%20Alpine%20Village!5e1!3m2!1sen!2sph!4v1745125623250!5m2!1sen!2sph",
+      "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3753.5860316785847!2d124.85464057477076!3d8.204947941827117!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x32ff9f2b04db951d%3A0x47c144b331887e7e!2sDahilayan%20Forest%20Park!5e1!3m2!1sen!2sph!4v1745125671968!5m2!1sen!2sph",
+      "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3753.5860316785847!2d124.85464057477076!3d8.204947941827117!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x32ff9f60c85c2e0f%3A0x71718b0e3e40309c!2sDahilayan%20Adventure%20Park!5e1!3m2!1sen!2sph!4v1745125704296!5m2!1sen!2sph",
+      "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d60038.19703098806!2d124.78567474551627!3d8.330886726413189!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x32ff97af812daa73%3A0xa055ab45b9d9bc80!2sDel%20Monte%20Pineapple%20Plantation!5e1!3m2!1sen!2sph!4v1745125731048!5m2!1sen!2sph",
+      "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3752.392709976826!2d124.80951713352093!3d8.33032410000001!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x32ff97b527fe0235%3A0x2df9f185ad541bca!2sDel%20Monte%20Pineapple%20Monument!5e1!3m2!1sen!2sph!4v1745125799169!5m2!1sen!2sph",
+
+      "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3753.1223543355472!2d125.17274837477112!3d8.253888791779723!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x32ffadbeae5853f5%3A0xf37f52cf66bdc1a4!2sCloudscape%20Nature%20Park!5e1!3m2!1sen!2sph!4v1745125856200!5m2!1sen!2sph",
+      "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3753.087236789696!2d125.16936097477124!3d8.257583691776093!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x32ffad007a320eab%3A0x13fb2241dc3740d0!2sDumagongdong%20Falls!5e1!3m2!1sen!2sph!4v1745125886273!5m2!1sen!2sph",
+      "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3753.1510467673756!2d125.17289207477116!3d8.250868691782633!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x32ffadbc99269223%3A0x82cbf436fc677939!2sKatihan%20Eco%20Park!5e1!3m2!1sen!2sph!4v1745125918769!5m2!1sen!2sph",
+      "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3753.8802215487076!2d125.14301337477032!3d8.173745491857343!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x32ffbf94d2839db7%3A0x1681bf74d3d39571!2sPine%20Ridge%20Bukidnon!5e1!3m2!1sen!2sph!4v1745125951945!5m2!1sen!2sph",
+      "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3754.4322531014377!2d125.13389777476965!3d8.114874191914396!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x32ff00b71380ffbf%3A0x945cdc8aac43d39b!2sAbbey%20of%20the%20Transfiguration!5e1!3m2!1sen!2sph!4v1745125990993!5m2!1sen!2sph"
+
+     ];
+
+     const prices = ["$24", "$26", "$25", "$22", "$21", "$20", "$17", "$14", "$18", "$15", "$14", "$9", "$11","$10"];
+     const durations = ["1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1"]; // number only
+    const bookingLinks = [
+  "../tour/Booking.html",
+  "../tour/Booking.html",
+  "../tour/Booking.html",
+  "../tour/Booking.html",
+  "../tour/Booking.html",
+  "../tour/Booking.html",
+  "../tour/Booking.html",
+  "../tour/Booking.html",
+  "../tour/Booking.html",
+  "../tour/Booking.html",
+  "../tour/Booking.html",
+  "../tour/Booking.html",
+  "../tour/Booking.html",
+  "../tour/Booking.html"
+];
+
+
+     function nextImage() {
+  currentIndex = (currentIndex + 1) % slides.length;
+  updateSlider();
+}
+
+function prevImage() {
+  currentIndex = (currentIndex - 1 + slides.length) % slides.length;
+  updateSlider();
+}
+
+function updateSlider() {
+  slides.forEach((slide, index) => {
+    slide.classList.remove("active");
+    if (index === currentIndex) {
+      slide.classList.add("active");
+      descriptionText.innerHTML = descriptions[index]; // <-- use innerHTML
+      mapBox.src = mapUrls[index];
+
+      // New dynamic content
+      document.getElementById("price").textContent = prices[index];
+      document.getElementById("duration").innerHTML = `<span>${durations[index]}</span> day`;
+      document.getElementById("booking-link").href = bookingLinks[index];
+    }
+  });
+}
+
+
+
+setInterval(nextImage, 50000); // Auto slide every 30 seconds
+   </script> 
+  </body> 
+</html>
